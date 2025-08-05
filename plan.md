@@ -17,7 +17,7 @@ This document outlines the phased approach for this project. The goal is to firs
 
 ---
 
-### Phase 1: Baseline Scientific Reproduction (CURRENT PHASE)
+### Phase 1: Baseline Scientific Reproduction (COMPLETE)
 
 **Goal:** To independently verify the performance claims made in the ADMET-AI paper by running the provided tool on a public benchmark dataset.
 
@@ -30,7 +30,7 @@ This document outlines the phased approach for this project. The goal is to firs
 
 ---
 
-### Phase 2: Novel Extension (FUTURE PHASE)
+### Phase 2: Novel Extension (CURRENT PHASE)
 
 **Goal:** To build upon the reproduced work by adding a unique contribution. This demonstrates independent research capability.
 
