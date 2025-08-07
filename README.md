@@ -44,6 +44,14 @@ This project is structured into three main phases:
 *   Developed `src/error_analysis.py` to perform the analysis.
 *   Generated and saved molecular images to the `images/` directory.
 
+### 2.2 Substructure Analysis
+
+**Description:** Performed a substructure analysis of the misclassified molecules to identify common functional groups.
+
+**Key Activities:**
+*   Developed `src/substructure_analysis.py` to identify and count common functional groups in the top 5 false positives and false negatives.
+*   The analysis revealed that false positives are rich in Aromatic Rings and Halogens, while false negatives show a prevalence of Alcohol, Ketone, and Halogen groups.
+
 ### 2.2 New Dataset Testing
 
 **Description:** Tested the pre-trained ADMET-AI model on a new public dataset (hERG) to evaluate its generalization capabilities.
@@ -66,6 +74,32 @@ Our results confirm the model's strong generalization to new datasets.
 **Key Activities:**
 *   Developed `src/compare_drug.py` to perform side-by-side ADMET profile comparisons.
 *   Used Aspirin (`CC(=O)OC1=CC=CC=C1C(=O)O`) as a reference drug.
+
+### 2.4 Benchmark Analysis
+
+**Description:** Performed a benchmark comparison of ADMET-AI against two other ADMET predictors (pkCSM and ADMETlab 2.0) on the ClinTox dataset, with enhanced statistical rigor.
+
+**Key Activities:**
+*   Developed `src/benchmark_analysis.py` to calculate AUROC and AUPRC scores with bootstrapped 95% confidence intervals.
+*   The results show that ADMET-AI (AUROC: ~0.97, AUPRC: ~0.68) significantly outperforms both pkCSM (AUROC: ~0.41, AUPRC: ~0.04) and ADMETlab 2.0 (AUROC: ~0.20, AUPRC: ~0.04) on this dataset.
+*   Developed `src/plot_auroc.py` to generate a comparison plot of the ROC curves, now including AUPRC in the legend.
+
+![AUROC Comparison](images/auroc_comparison.png)
+
+### 2.5 Substructure Analysis
+
+**Description:** Performed a quantitative substructure analysis of the misclassified molecules to identify common functional groups and statistically test their enrichment.
+
+**Key Activities:**
+*   Developed `src/substructure_analysis.py` to identify and count common functional groups in misclassified molecules and apply Fisher's exact test.
+*   The analysis revealed statistically significant enrichment of Halogen groups in False Positives (p=0.0419) and Carboxylic Acid (p=0.0093) and Halogen (p=0.0092) groups in False Negatives.
+
+### 2.6 Chemical Space Visualization
+
+**Description:** Visualized the chemical space of the ClinTox dataset to observe the distribution of correctly and incorrectly classified molecules.
+
+**Key Activities:**
+*   Developed `src/plot_chemical_space.py` to generate a 2D UMAP plot of the chemical space, coloring molecules by their classification (True Positive, True Negative, False Positive, False Negative).
 
 ## How to Run the Code
 
