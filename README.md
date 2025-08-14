@@ -77,11 +77,11 @@ Our results confirm the model's strong generalization to new datasets.
 
 ### 2.4 Benchmark Analysis
 
-**Description:** Performed a benchmark comparison of ADMET-AI against two other ADMET predictors (pkCSM and ADMETlab 2.0) on the ClinTox dataset, with enhanced statistical rigor.
+**Description:** Performed a benchmark comparison of ADMET-AI against two other ADMET predictors (pkCSM and ADMETlab 3.0) on the ClinTox dataset, with enhanced statistical rigor.
 
 **Key Activities:**
 *   Developed `src/benchmark_analysis.py` to calculate AUROC and AUPRC scores with bootstrapped 95% confidence intervals.
-*   The results show that ADMET-AI (AUROC: ~0.97, AUPRC: ~0.68) significantly outperforms both pkCSM (AUROC: ~0.41, AUPRC: ~0.04) and ADMETlab 2.0 (AUROC: ~0.20, AUPRC: ~0.04) on this dataset.
+*   The results show that ADMET-AI (AUROC: ~0.88, AUPRC: ~0.71) still outperforms both pkCSM (AUROC: ~0.66, AUPRC: ~0.38) and ADMETlab 3.0 (AUROC: ~0.71, AUPRC: ~0.44) on this dataset.
 *   Developed `src/plot_auroc.py` to generate a comparison plot of the ROC curves, now including AUPRC in the legend.
 
 ![AUROC Comparison](images/auroc_comparison.png)

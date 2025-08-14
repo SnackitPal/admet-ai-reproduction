@@ -6,27 +6,28 @@ import numpy as np
 true_labels_df = pd.read_csv('data/data.csv')
 admet_ai_preds = pd.read_csv('data/predictions.csv')
 pkcsm_preds = pd.read_csv('data/pkcsm_predictions_combined.csv')
-admetlab_preds = pd.read_csv('data/admetlab_predictions.csv')
+admetlab_preds = pd.read_csv('data/admetlab_predictions_cleaned.csv')
 
 # --- Prepare the data ---
-# Reset index to join on the assumption of conserved order
+# Rename SMILES columns for consistency
+true_labels_df.rename(columns={'Drug': 'SMILES'}, inplace=True)
+admet_ai_preds.rename(columns={'Drug': 'SMILES'}, inplace=True)
+admetlab_preds.rename(columns={'smiles': 'SMILES'}, inplace=True)
 
-# 1. True Labels
-true_labels = true_labels_df['Y'].to_frame(name='Y')
-
-# 2. ADMET-AI Predictions
-admet_ai_values = admet_ai_preds['ClinTox'].to_frame(name='ADMET-AI')
-
-# 3. pkCSM Predictions
+# Select relevant columns
+true_labels = true_labels_df[['SMILES', 'Y']]
+admet_ai_values = admet_ai_preds[['SMILES', 'ClinTox']]
 pkcsm_preds['pkCSM'] = pkcsm_preds['Hepatotoxicity'].apply(lambda x: 1 if x == 'Yes' else 0)
-pkcsm_values = pkcsm_preds['pkCSM'].to_frame(name='pkCSM')
+pkcsm_values = pkcsm_preds[['SMILES', 'pkCSM']]
+admetlab_values = admetlab_preds[['SMILES', 'H-HT']]
 
-# 4. ADMETlab 2.0 Predictions
-admetlab_values = admetlab_preds['H-HT'].to_frame(name='ADMETlab')
+# Merge dataframes on SMILES string
+final_df = pd.merge(true_labels, admet_ai_values, on='SMILES', how='inner')
+final_df = pd.merge(final_df, pkcsm_values, on='SMILES', how='inner')
+final_df = pd.merge(final_df, admetlab_values, on='SMILES', how='inner')
 
-# --- Concatenate all dataframes by index ---
-# This assumes all files have the same number of rows in the same order
-final_df = pd.concat([true_labels, admet_ai_values, pkcsm_values, admetlab_values], axis=1)
+# Rename columns for the analysis loop
+final_df.rename(columns={'ClinTox': 'ADMET-AI', 'H-HT': 'ADMETlab'}, inplace=True)
 
 # Drop any rows where data might be missing to be safe
 final_df.dropna(inplace=True)
