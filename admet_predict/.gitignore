@@ -1,0 +1,59 @@
+# Gitignore for ADMET-AI Reproduction Project
+
+# Operating System and Editor Specific Files
+.DS_Store
+.ipynb_checkpoints/
+.vscode/
+*.swp
+*~
+
+# Python specific files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+pip-log.txt
+pip-delete-this-arg.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+*.egg-info/
+.benchmarks/
+
+# Data files (generated or large, should not be committed)
+data/
+All toxicity files/
+btae416_supplementary_data/
+pkcsm_predictions.csv
+pkcsm_predictions.csv.xlsx
+ADMET AI Paper.pdf
+example_data.csv
+predictions.csv
+
+# Local files and directories
+Keep/
+
+# Specific project files to exclude from public repo
+paper_summary.txt
+plan.md
+progress.md
+project_context.md
+project_article.md
+answers.md
+best_practices.md
+project_pipeline_details.md
+phase1_qa.md
+phase2_qa.md
+phase3_qa.md
+additional_questions_qa.md
+prompts/
